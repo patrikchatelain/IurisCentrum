@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kostenlose Rechtsberatung | IurisCentrum - Patrik Chatelain</title>
+    <meta name="description" content="Rechtliche Sorgen rauben Ihnen den Schlaf? Patrik Chatelain hilft Ihnen mit einer kostenlosen Ersteinschätzung. Unkompliziert, verständlich und vertraulich.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Plus Jakarta Sans für moderne Lesbarkeit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        trust: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0066cc',
+                            800: '#0f3c6c',
+                            900: '#0b2849',
+                        },
+                        fresh: {
+                            50: '#f2fbf9',
+                            100: '#d7f4ee',
+                            500: '#0d9488',
+                            600: '#0f766e',
+                        },
+                        calm: '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #f2fbf9 0%, #ffffff 50%, #f0f7ff 100%);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .pulse-subtle {
+            animation: pulseSubtle 3s infinite;
+        }
+
+        @keyframes pulseSubtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        /* Smooth FAQ Transition */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-800 flex flex-col min-h-screen">
+
+    <!-- TOP BAR / EMERGENCY HELPLINE -->
+    <div class="bg-trust-900 text-slate-200 text-xs sm:text-sm py-2 px-4 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center flex-wrap gap-2">
+            <div class="flex items-center gap-4">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-fresh-500"></i> <a href="tel:+41615068010" class="hover:underline">+41 61 506 80 10</a></span>
+                <span class="hidden md:inline text-slate-500">|</span>
+                <span class="hidden md:flex items-center gap-1.5"><i class="fa-solid fa-envelope text-fresh-500"></i> <a href="mailto:info@kostenlose-rechtsberatung.ch" class="hover:underline">info@kostenlose-rechtsberatung.ch</a></span>
+            </div>
+            <div class="flex items-center gap-3 font-medium">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Kostenlose Erstberatung aktiv
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- LOGO -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-trust-800 to-fresh-500 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-scale-balanced text-xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold tracking-tight text-trust-900 leading-none">IurisCentrum</span>
+                        <span class="text-xs font-medium text-fresh-600 tracking-wider uppercase mt-1">Rechtsberatung</span>
+                    </div>
+                </a>
+
+                <!-- DESKTOP NAVIGATION -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
+                    <a href="#vorteile" class="hover:text-trust-500 transition-colors">Ihre Vorteile</a>
+                    <a href="#uber-mich" class="hover:text-trust-500 transition-colors">Über Mich</a>
+                    <a href="#bewertungen" class="hover:text-trust-500 transition-colors">Erfahrungen</a>
+                    <a href="#faq" class="hover:text-trust-500 transition-colors">FAQ</a>
+                </nav>
+
+                <!-- CTA BUTTON -->
+                <div class="hidden md:flex items-center">
+                    <a href="#anfrage" class="px-5 py-2.5 rounded-xl bg-trust-800 text-white font-semibold shadow-sm hover:bg-trust-900 hover:shadow transition-all flex items-center gap-2">
+                        <i class="fa-regular fa-paper-plane"></i>
+                        <span>Anfrage starten</span>
+                    </a>
+                </div>
+
+                <!-- MOBILE MENU BUTTON -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none" aria-label="Menü öffnen">
+                    <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU CONTAINER -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#vorteile" class="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-50">Ihre Vorteile</a>
+            <a href="#uber-mich" class="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-50">Über Mich</a>
+            <a href="#bewertungen" class="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-50">Erfahrungen</a>
+            <a href="#faq" class="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-slate-50">FAQ</a>
+            <a href="#anfrage" class="block w-full text-center px-4 py-3 rounded-xl bg-trust-800 text-white font-semibold">Anfrage starten</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- HERO SECTION (NEUROPSYCHOLOGISCH OPTIMIERT) -->
+        <section class="hero-gradient py-16 lg:py-24 overflow-hidden relative border-b border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- HERO CONTENT -->
+                    <div class="lg:col-span-7 space-y-8 text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-fresh-100 border border-fresh-500/20 text-fresh-600 text-xs sm:text-sm font-semibold">
+                            <i class="fa-solid fa-shield-heart"></i>
+                            <span>Unkomplizierte & schnelle Hilfe im Schweizer Recht</span>
+                        </div>
+                        
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-trust-900 tracking-tight leading-tight">
+                            Rechtliche Sorgen rauben Ihnen den Schlaf?
+                        </h1>
+                        
+                        <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+                            Ich helfe Ihnen, sofort Ordnung und Klarheit in Ihre Rechtslage zu bringen. Nutzen Sie meine <strong class="text-trust-900 font-semibold">kostenlose Ersteinschätzung</strong> – damit Sie wieder beruhigt durchatmen und mit gutem Gefühl Ihre nächsten Schritte planen können.
+                        </p>
+
+                        <!-- CALL TO ACTION BUTTONS -->
+                        <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                            <a href="#anfrage" class="px-7 py-4 rounded-xl bg-trust-800 text-white text-center font-bold text-base shadow-lg shadow-trust-800/20 hover:bg-trust-900 hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3 group">
+                                <span>Jetzt kostenlose Anfrage starten</span>
+                                <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                            </a>
+                            <a href="#uber-mich" class="px-7 py-4 rounded-xl bg-white border-2 border-slate-200 text-slate-700 text-center font-bold text-base hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center justify-center gap-2">
+                                <i class="fa-regular fa-user text-trust-800"></i>
+                                <span>Mehr über mich erfahren</span>
+                            </a>
+                        </div>
+
+                        <!-- TRUST BADGES -->
+                        <div class="pt-6 border-t border-slate-200/80 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm font-medium text-slate-600">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-check text-xs"></i>
+                                </div>
+                                <span>100% vertraulich & unverbindlich</span>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-check text-xs"></i>
+                                </div>
+                                <span>Fundierte juristische Erfahrung</span>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-check text-xs"></i>
+                                </div>
+                                <span>Klare Handlungsempfehlungen</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HERO VISUAL / QUICK CARD -->
+                    <div class="lg:col-span-5">
+                        <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-xl relative border border-white">
+                            <div class="absolute -top-3 -right-3 bg-fresh-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                                Schweizweit verfügbar
+                            </div>
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-14 h-14 rounded-2xl bg-trust-800 text-white flex items-center justify-center text-2xl shadow">
+                                        <i class="fa-solid fa-gavel"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-trust-900 text-lg">Direkte Ersteinschätzung</h3>
+                                        <p class="text-xs text-slate-500">Mietrecht, Arbeitsrecht, Familienrecht & mehr</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white p-4 rounded-xl border border-slate-100 space-y-3 shadow-sm">
+                                    <div class="flex items-center justify-between text-xs text-slate-500 font-semibold">
+                                        <span>SCHRITTE ZUR LÖSUNG</span>
+                                        <span class="text-fresh-600">3 einfache Schritte</span>
+                                    </div>
+                                    <div class="space-y-2 text-xs font-medium text-slate-700">
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-5 h-5 rounded-full bg-trust-100 text-trust-800 flex items-center justify-center text-[10px] font-bold">1</span>
+                                            <span>Schildern Sie mir Ihr Anliegen kurz online</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-5 h-5 rounded-full bg-trust-100 text-trust-800 flex items-center justify-center text-[10px] font-bold">2</span>
+                                            <span>Ich prüfe Ihre Dokumente und Rechtslage</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-5 h-5 rounded-full bg-trust-100 text-trust-800 flex items-center justify-center text-[10px] font-bold">3</span>
+                                            <span>Sie erhalten eine klare Einschätzung</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-center pt-1">
+                                    <p class="text-xs text-slate-500 italic mb-3">
+                                        "Es gibt für fast jedes rechtliche Problem eine verständliche Lösung."
+                                    </p>
+                                    <a href="#anfrage" class="block w-full py-3 rounded-xl bg-fresh-500 hover:bg-fresh-600 text-white font-bold text-sm text-center shadow transition-all">
+                                        Jetzt Fall schildern
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- WIE ICH SIE ENTLASTE (PROBLEM-LÖSUNG) -->
+        <section id="vorteile" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-fresh-600">Ihr Weg zu rechtlicher Klarheit</h2>
+                    <p class="text-2xl sm:text-3xl font-extrabold text-trust-900">Wie ich Sie wirksam entlaste</p>
+                    <p class="text-slate-600">Recht muss nicht kompliziert sein. Ich nehme Ihnen die Unsicherheit und zeige Ihnen lösungsorientierte Wege auf.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- KACHEL 1 -->
+                    <div class="bg-slate-50/70 p-8 rounded-3xl border border-slate-100 hover:border-fresh-500/30 hover:shadow-xl hover:bg-white transition-all group">
+                        <div class="w-14 h-14 rounded-2xl bg-fresh-100 text-fresh-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-fresh-500 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-ear-listen"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-trust-900 mb-3">1. Das Problem verstehen</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Komplexe Gesetzestexte und unübersichtliche Rechtslagen machen es schwer, die eigenen Rechte einzuschätzen. Ich höre Ihnen aufmerksam zu und sortiere das Chaos für Sie.
+                        </p>
+                    </div>
+
+                    <!-- KACHEL 2 -->
+                    <div class="bg-slate-50/70 p-8 rounded-3xl border border-slate-100 hover:border-trust-500/30 hover:shadow-xl hover:bg-white transition-all group">
+                        <div class="w-14 h-14 rounded-2xl bg-trust-100 text-trust-800 flex items-center justify-center text-2xl mb-6 group-hover:bg-trust-800 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-trust-900 mb-3">2. Klarheit schaffen</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Ich analysiere Ihre individuelle Situation sorgfältig und praxisorientiert. Sie erfahren sofort, was die geltende Rechtslage konkret für Sie bedeutet – ohne juristisches Fachchinesisch.
+                        </p>
+                    </div>
+
+                    <!-- KACHEL 3 -->
+                    <div class="bg-slate-50/70 p-8 rounded-3xl border border-slate-100 hover:border-emerald-500/30 hover:shadow-xl hover:bg-white transition-all group">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-compass"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-trust-900 mb-3">3. Den nächsten Schritt gehen</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Gemeinsam erarbeiten wir pragmatische Lösungswege, damit Sie genau wissen, welche Handlungsschritte jetzt sinnvoll sind. Unkompliziert, verständlich und auf Ihre Ziele abgestimmt.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ÜBER MICH & MISSION SECTION -->
+        <section id="uber-mich" class="py-20 bg-slate-50/60 border-y border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- FOTO -->
+                    <div class="lg:col-span-5">
+                        <div class="relative max-w-md mx-auto lg:max-w-none">
+                            <div class="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-fresh-500 to-trust-800 opacity-20 blur-xl"></div>
+                            <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+                                <img src="https://static.wixstatic.com/media/370abe_40bbda362c15417d98d2fbb77bd357c1~mv2.png/v1/fill/w_979,h_1223,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/ChatGPT%20Image%2018_%20Juni%202026%2C%2012_29_06.png" 
+                                     alt="Patrik Chatelain - IurisCentrum Rechtsberatung" 
+                                     class="w-full h-auto object-cover object-center max-h-[580px]"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/800x1000/0f3c6c/ffffff?text=Patrik+Chatelain';">
+                                <div class="p-4 bg-trust-900 text-white text-center">
+                                    <p class="font-bold text-lg">Patrik Chatelain</p>
+                                    <p class="text-xs text-slate-300 font-medium">Gründer & Rechtsberater | IurisCentrum</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TEXTCONTENT IN ICH-FORM -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-trust-100 text-trust-800 text-xs font-bold">
+                            <i class="fa-solid fa-user-check"></i>
+                            <span>Persönlich & Nahbar</span>
+                        </div>
+                        
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-trust-900 leading-tight">
+                            Über mich & meine Mission
+                        </h2>
+
+                        <div class="prose text-slate-600 leading-relaxed space-y-4 text-base">
+                            <p>
+                                Durch meine langjährige Tätigkeit im privaten und öffentlichen Sektor habe ich umfassende Erfahrung als Rechtsberater in der Auseinandersetzung mit unterschiedlichsten rechtlichen Fragestellungen gesammelt.
+                            </p>
+                            <p>
+                                Mit <strong class="text-trust-900">IurisCentrum Rechtsberatung</strong> verfolge ich ein klares Ziel: rechtliche Orientierung für alle Menschen zugänglich und verständlich zu machen. Denn rechtliche Fragen treffen uns meist unerwartet – im Arbeitsverhältnis, bei Mietangelegenheiten, in familiären Konflikten oder im Umgang mit Behörden.
+                            </p>
+                            <p>
+                                Komplexe Gesetzestexte machen es Betroffenen oft schwer, eigene Rechte richtig einzuschätzen. Deshalb lege ich besonderen Wert darauf, Zusammenhänge ohne kompliziertes Fachchinesisch zu erklären und Lösungen zu finden, die im echten Leben funktionieren.
+                            </p>
+                            <p class="italic bg-white p-4 rounded-xl border-l-4 border-fresh-500 shadow-sm text-slate-700">
+                                "Meine Beratung verbindet juristische Sorgfalt mit einer praxisorientierten Herangehensweise. Nicht die abstrakte Theorie steht im Vordergrund, sondern was die Rechtslage konkret für Sie bedeutet."
+                            </p>
+                            <p>
+                                Mein Anspruch ist es, Ihnen eine schnelle und nachvollziehbare Orientierung zu ermöglichen. Mit einer kostenlosen Ersteinschätzung möchte ich dazu beitragen, dass Sie fundierte Entscheidungen treffen können.
+                            </p>
+                        </div>
+
+                        <div class="pt-4 flex items-center gap-4">
+                            <div>
+                                <p class="font-bold text-trust-900 text-lg">Ihr Patrik Chatelain</p>
+                                <p class="text-xs text-slate-500">IurisCentrum Rechtsberatung Aesch</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- GOOGLE BEWERTUNGEN (SOCIAL PROOF) -->
+        <section id="bewertungen" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-bold mb-3 border border-amber-200">
+                            <i class="fa-solid fa-star text-amber-400"></i>
+                            <span>5.0 Sterne auf Google</span>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-trust-900">Was Klienten über meine Beratung sagen</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-semibold text-slate-600">Ausgezeichneter Service</span>
+                        <div class="flex text-amber-400 gap-1 text-base">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TESTIMONIAL GRID -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    
+                    <!-- REVIEWS 1 -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex text-amber-400 text-sm gap-1">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <i class="fa-brands fa-google text-slate-400 text-lg"></i>
+                            </div>
+                            <p class="text-slate-700 text-sm leading-relaxed italic">
+                                „Endlich jemand, der mir aufmerksam zugehört hat und mir die Angst vor dem Mietstreit genommen hat. Die Beratung war verständlich, klar und absolut professionell. Vielen Dank!“
+                            </p>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-slate-200/60 flex justify-between items-center text-xs">
+                            <span class="font-bold text-trust-900">M. S. aus Basel</span>
+                            <span class="text-slate-400">Verifizierte Bewertung</span>
+                        </div>
+                    </div>
+
+                    <!-- REVIEWS 2 -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex text-amber-400 text-sm gap-1">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <i class="fa-brands fa-google text-slate-400 text-lg"></i>
+                            </div>
+                            <p class="text-slate-700 text-sm leading-relaxed italic">
+                                „Sehr kompetent und menschlich. Dank der schnellen und kostenlosen Ersteinschätzung wusste ich sofort, welche Schritte ich in meinem Arbeitsrechtsproblem gehen musste.“
+                            </p>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-slate-200/60 flex justify-between items-center text-xs">
+                            <span class="font-bold text-trust-900">T. K. aus Aesch</span>
+                            <span class="text-slate-400">Verifizierte Bewertung</span>
+                        </div>
+                    </div>
+
+                    <!-- REVIEWS 3 -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex text-amber-400 text-sm gap-1">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <i class="fa-brands fa-google text-slate-400 text-lg"></i>
+                            </div>
+                            <p class="text-slate-700 text-sm leading-relaxed italic">
+                                „Absolut empfehlenswert! Klare Worte, keine unnötige Paragraphenreiterei, sondern echte Hilfe im Alltag. Hat mir sehr geholfen.“
+                            </p>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-slate-200/60 flex justify-between items-center text-xs">
+                            <span class="font-bold text-trust-900">S. B. aus Reinach</span>
+                            <span class="text-slate-400">Verifizierte Bewertung</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- INTEGRATED FORMULAR: ANFRAGE RECHTSBERATUNG -->
+        <section id="anfrage" class="py-20 bg-gradient-to-b from-slate-50 to-white relative">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="bg-white rounded-3xl shadow-xl border border-slate-200/80 p-6 sm:p-10 lg:p-12 relative overflow-hidden">
+                    <!-- BACKGROUND ACCENT DECORATION -->
+                    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-fresh-500 via-trust-500 to-trust-800"></div>
+
+                    <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
+                        <span class="px-3 py-1 rounded-full bg-fresh-100 text-fresh-600 text-xs font-bold tracking-wide uppercase">
+                            100% Kostenlos & Unverbindlich
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-trust-900">Kostenlose Rechtsberatung anfragen</h2>
+                        <p class="text-slate-600 text-sm sm:text-base">
+                            Schildern Sie mir Ihr Anliegen ganz unkompliziert. Ich prüfe Ihre Angaben persönlich und melde mich zeitnah bei Ihnen zurück.
+                        </p>
+                    </div>
+
+                    <form id="legalForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- VOR- UND NACHNAME -->
+                            <div class="space-y-2">
+                                <label for="fullname" class="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                                    Ihr Vor- und Nachname <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <input type="text" id="fullname" required placeholder="z. B. Anna Muster"
+                                        class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-trust-500 focus:border-trust-500 outline-none transition text-sm">
+                                </div>
+                            </div>
+
+                            <!-- E-MAIL ADDRESS -->
+                            <div class="space-y-2">
+                                <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                                    Ihre E-Mail-Adresse <span class="text-red-500">*</span>
+                                </label>
+                                <input type="email" id="email" required placeholder="name@beispiel.ch"
+                                    class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-trust-500 focus:border-trust-500 outline-none transition text-sm">
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- TELEFON -->
+                            <div class="space-y-2">
+                                <label for="phone" class="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                                    Telefonnummer (für Rückfragen)
+                                </label>
+                                <input type="tel" id="phone" placeholder="+41 79 000 00 00"
+                                    class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-trust-500 focus:border-trust-500 outline-none transition text-sm">
+                            </div>
+
+                            <!-- RECHTSGEBIET DROPDOWN -->
+                            <div class="space-y-2">
+                                <label for="category" class="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                                    Betroffenes Rechtsgebiet <span class="text-red-500">*</span>
+                                </label>
+                                <select id="category" required class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-trust-500 focus:border-trust-500 outline-none transition text-sm bg-white">
+                                    <option value="" disabled selected>Bitte auswählen...</option>
+                                    <option value="Mietrecht">Mietrecht & Nachbarschaft</option>
+                                    <option value="Arbeitsrecht">Arbeitsrecht & Kündigung</option>
+                                    <option value="Familienrecht">Familienrecht & Trennung</option>
+                                    <option value="Vertragsrecht">Vertragsrecht & Konsumentenschutz</option>
+                                    <option value="Verkehrs- & Strafrecht">Verkehrs- & Strafrecht</option>
+                                    <option value="Soziales & Gesundheit">Soziales & Gesundheit</option>
+                                    <option value="Sonstiges">Sonstiges Anliegen</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- BESCHREIBUNG -->
+                        <div class="space-y-2">
+                            <label for="message" class="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                                Beschreibung Ihres Anliegens <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="message" rows="5" required placeholder="Bitte beschreiben Sie kurz Ihre aktuelle Situation und welche konkrete Frage Sie haben..."
+                                class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-trust-500 focus:border-trust-500 outline-none transition text-sm"></textarea>
+                        </div>
+
+                        <!-- DATEI UPLOAD FIELD -->
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                                Dokumente anhängen (Optional)
+                            </label>
+                            <div class="border-2 border-dashed border-slate-300 rounded-xl p-4 text-center bg-slate-50/50 hover:bg-slate-50 transition cursor-pointer relative" id="dropZone">
+                                <input type="file" id="fileInput" class="hidden" multiple onchange="updateFileList()">
+                                <label for="fileInput" class="cursor-pointer flex flex-col items-center gap-1">
+                                    <i class="fa-solid fa-cloud-arrow-up text-2xl text-trust-500"></i>
+                                    <span class="text-xs font-medium text-slate-600">PDF, Bilder oder Verträge hochladen</span>
+                                    <span class="text-[10px] text-slate-400">Maximal 10 MB pro Datei</span>
+                                </label>
+                                <div id="fileList" class="mt-2 text-xs text-fresh-600 font-semibold space-y-1"></div>
+                            </div>
+                        </div>
+
+                        <!-- DATENSCHUTZ CHECKBOX -->
+                        <div class="flex items-start gap-3 pt-2">
+                            <input type="checkbox" id="privacy" required class="mt-1 w-4 h-4 text-trust-800 rounded border-slate-300 focus:ring-trust-500">
+                            <label for="privacy" class="text-xs text-slate-600 leading-normal">
+                                Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und Bearbeitung meiner Anfrage vertraulich verarbeitet und per E-Mail an <strong>info@kostenlose-rechtsberatung.ch</strong> übermittelt werden.
+                            </label>
+                        </div>
+
+                        <!-- SUBMIT BUTTON -->
+                        <button type="submit" class="w-full py-4 rounded-xl bg-trust-800 hover:bg-trust-900 text-white font-bold text-base shadow-lg shadow-trust-800/20 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-paper-plane"></i>
+                            <span>Kostenlose Anfrage jetzt absenden</span>
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- HÄUFIGE FRAGEN (FAQ - ACCORDION) -->
+        <section id="faq" class="py-20 bg-white border-t border-slate-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center mb-12 space-y-2">
+                    <span class="text-xs font-bold text-fresh-600 uppercase tracking-wider">Transparenz</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-trust-900">Häufig gestellte Fragen</h2>
+                    <p class="text-slate-600 text-sm">Hier finden Sie klare Antworten auf Ihre wichtigsten Fragen zur Erstberatung.</p>
+                </div>
+
+                <div class="space-y-4">
+                    
+                    <!-- FAQ ITEM 1 -->
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden bg-slate-50/50">
+                        <button onclick="toggleFaq(1)" class="w-full px-6 py-5 text-left flex justify-between items-center gap-4 font-bold text-trust-900 text-base focus:outline-none">
+                            <span>Was ist der Unterschied zwischen Beratung und einem Gerichtsverfahren?</span>
+                            <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300" id="faq-icon-1"></i>
+                        </button>
+                        <div id="faq-answer-1" class="faq-answer px-6 pb-5 text-sm text-slate-600 leading-relaxed">
+                            Ich biete Ihnen eine unabhängige und vertrauliche Erstberatung, die sich auf die Klärung Ihrer aktuellen Rechtslage konzentriert. Ein Gerichtsverfahren ist ein formeller Prozess vor Gericht, der oft zeit- und kostenintensiv ist. Meine Beratung zielt darauf ab, Lösungen aufzuzeigen, bevor unnötige Konflikte entstehen.
+                        </div>
+                    </div>
+
+                    <!-- FAQ ITEM 2 -->
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden bg-slate-50/50">
+                        <button onclick="toggleFaq(2)" class="w-full px-6 py-5 text-left flex justify-between items-center gap-4 font-bold text-trust-900 text-base focus:outline-none">
+                            <span>Welche Rechtsgebiete behandeln Sie vorrangig?</span>
+                            <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300" id="faq-icon-2"></i>
+                        </button>
+                        <div id="faq-answer-2" class="faq-answer px-6 pb-5 text-sm text-slate-600 leading-relaxed">
+                            Mein Angebot deckt die gängigsten Alltagsrechtsgebiete ab: Mietrecht, Arbeitsrecht, Familienrecht, Konsumenten- & Vertragsrecht sowie Streitigkeiten mit Behörden oder Versicherungen.
+                        </div>
+                    </div>
+
+                    <!-- FAQ ITEM 3 -->
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden bg-slate-50/50">
+                        <button onclick="toggleFaq(3)" class="w-full px-6 py-5 text-left flex justify-between items-center gap-4 font-bold text-trust-900 text-base focus:outline-none">
+                            <span>Was genau bedeutet 'kostenfreie Ersteinschätzung'?</span>
+                            <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300" id="faq-icon-3"></i>
+                        </button>
+                        <div id="faq-answer-3" class="faq-answer px-6 pb-5 text-sm text-slate-600 leading-relaxed">
+                            Die Erstprüfung Ihrer Online-Anfrage sowie eine Orientierung über Ihre Rechtslage sind für Sie vollkommen kostenfrei und unverbindlich. Ich helfe Ihnen ohne versteckte Hürden dabei, Klarheit über Ihre Situation zu gewinnen.
+                        </div>
+                    </div>
+
+                    <!-- FAQ ITEM 4 -->
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden bg-slate-50/50">
+                        <button onclick="toggleFaq(4)" class="w-full px-6 py-5 text-left flex justify-between items-center gap-4 font-bold text-trust-900 text-base focus:outline-none">
+                            <span>Welche Unterlagen sollte ich für die Anfrage bereithalten?</span>
+                            <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300" id="faq-icon-4"></i>
+                        </button>
+                        <div id="faq-answer-4" class="faq-answer px-6 pb-5 text-sm text-slate-600 leading-relaxed">
+                            Um Ihnen eine möglichst präzise Auskunft zu geben, sind relevante Verträge (z.B. Arbeits- oder Mietvertrag), Kündigungsschreiben oder Briefverkehr hilfreich. Sie können diese bequem direkt im Formular hochladen.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SUCCESS MODAL (CUSTOM NOTIFICATION) -->
+    <div id="successModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl text-center space-y-5 animate-fade-in">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-trust-900">Vielen Dank für Ihre Anfrage!</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+                Ich habe Ihre Nachricht erhalten. Ich werde Ihr Anliegen sorgfältig prüfen und mich in Kürze bei Ihnen zurückmelden.
+            </p>
+            <button onclick="closeModal()" class="w-full py-3 bg-trust-800 text-white font-bold rounded-xl hover:bg-trust-900 transition">
+                Verstanden
+            </button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-trust-900 text-slate-300 text-sm py-12 border-t border-trust-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8 pb-8 border-b border-trust-800">
+                
+                <!-- SPALTE 1: BRAND -->
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-fresh-500 flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-scale-balanced text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">IurisCentrum</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Ihre unabhängige Anlaufstelle für verständliche, barrierefreie und kostenlose Rechtsberatung in der Schweiz.
+                    </p>
+                </div>
+
+                <!-- SPALTE 2: KONTAKT -->
+                <div class="space-y-2">
+                    <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-2">Kontakt</h4>
+                    <p class="text-xs flex items-center gap-2"><i class="fa-solid fa-location-dot text-fresh-500"></i> Käppelirainweg 11, CH-4147 Aesch</p>
+                    <p class="text-xs flex items-center gap-2"><i class="fa-solid fa-phone text-fresh-500"></i> <a href="tel:+41615068010" class="hover:text-white">+41 61 506 80 10</a></p>
+                    <p class="text-xs flex items-center gap-2"><i class="fa-solid fa-envelope text-fresh-500"></i> <a href="mailto:info@kostenlose-rechtsberatung.ch" class="hover:text-white">info@kostenlose-rechtsberatung.ch</a></p>
+                </div>
+
+                <!-- SPALTE 3: RECHTLICHES -->
+                <div class="space-y-2">
+                    <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-2">Informationen</h4>
+                    <ul class="text-xs space-y-1.5 text-slate-400">
+                        <li><a href="#uber-mich" class="hover:text-white transition">Über Patrik Chatelain</a></li>
+                        <li><a href="#anfrage" class="hover:text-white transition">Rechtsberatung anfragen</a></li>
+                        <li><a href="#" class="hover:text-white transition">Datenschutzerklärung</a></li>
+                        <li><a href="#" class="hover:text-white transition">Impressum</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400 gap-2">
+                <p>&copy; 2026 IurisCentrum Rechtsberatung. Alle Rechte vorbehalten.</p>
+                <p>Website gestaltet für maximale Klarheit & Stressreduktion.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FOR INTERACTION -->
+    <script>
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // FAQ Toggle Logic
+        function toggleFaq(id) {
+            const answer = document.getElementById(`faq-answer-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+            
+            const isActive = answer.classList.contains('active');
+            
+            // Close all
+            document.querySelectorAll('.faq-answer').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('[id^="faq-icon-"]').forEach(el => el.style.transform = 'rotate(0deg)');
+            
+            if (!isActive) {
+                answer.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // File List Display Simulation
+        function updateFileList() {
+            const input = document.getElementById('fileInput');
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+            
+            if (input.files.length > 0) {
+                for (let i = 0; i < input.files.length; i++) {
+                    const fileName = input.files[i].name;
+                    fileList.innerHTML += `<div><i class="fa-solid fa-file text-slate-400 mr-1"></i> ${fileName}</div>`;
+                }
+            }
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const category = document.getElementById('category').value;
+            const message = document.getElementById('message').value;
+
+            // Prepare Mailto Link
+            const subject = encodeURIComponent(`Neue Rechtsberatung-Anfrage von ${name} [${category}]`);
+            const body = encodeURIComponent(
+                `Name: ${name}\n` +
+                `E-Mail: ${email}\n` +
+                `Telefon: ${phone}\n` +
+                `Rechtsgebiet: ${category}\n\n` +
+                `Anliegen:\n${message}`
+            );
+
+            // Open mail Client
+            window.location.href = `mailto:info@kostenlose-rechtsberatung.ch?subject=${subject}&body=${body}`;
+
+            // Show Success Modal
+            document.getElementById('successModal').classList.remove('hidden');
+            document.getElementById('legalForm').reset();
+            document.getElementById('fileList').innerHTML = '';
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
