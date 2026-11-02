@@ -683,7 +683,6 @@
                         <li><a href="#anfrage" class="hover:text-white transition">Rechtsberatung anfragen</a></li>
                         <li><a href="#" class="hover:text-white transition">Datenschutz</a></li>
                         <li><a href="#" class="hover:text-white transition">AGB</a></li>
-                        <li><a href="#" class="hover:text-white transition"></a></li>
                     </ul>
                 </div>
 
@@ -691,60 +690,57 @@
 
             <div class="flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400 gap-2">
                 <p>&copy; 2026 IurisCentrum Rechtsberatung. Alle Rechte vorbehalten.</p>
-
             </div>
         </div>
     </footer>
 
-        // Form Submit Handler für n8n Webhook
+    <!-- Form Submit Handler für n8n Webhook -->
+    <script>
+    async function handleFormSubmit(e) {
+        e.preventDefault();
         
-        <script>
-        async function handleFormSubmit(e) {
-            e.preventDefault();
-            
-            const submitBtn = e.target.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i><span>Wird gesendet...</span>';
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i><span>Wird gesendet...</span>';
 
-            // Daten direkt aus den bestehenden IDs auslesen
-            const formDataPayload = {
-                name: document.getElementById('fullname').value,
-                email: document.getElementById('email').value,
-                telefon: document.getElementById('phone').value,
-                rechtsgebiet: document.getElementById('category').value,
-                nachricht: document.getElementById('message').value
-            };
+        // Daten direkt aus den bestehenden IDs auslesen
+        const formDataPayload = {
+            name: document.getElementById('fullname').value,
+            email: document.getElementById('email').value,
+            telefon: document.getElementById('phone').value,
+            rechtsgebiet: document.getElementById('category').value,
+            nachricht: document.getElementById('message').value
+        };
 
-            try {
-                // ERSETZEN SIE DIESE URL MIT IHRER ECHTEN N8N WEBHOOK-URL
-                const webhookUrl = "https://n8n.kostenlose-rechtsberatung.ch/webhook/Mail-Formular";
+        try {
+            const webhookUrl = "https://n8n.kostenlose-rechtsberatung.ch/webhook/Mail-Formular";
 
-                const response = await fetch(webhookUrl, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(formDataPayload)
-                });
+            const response = await fetch(webhookUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formDataPayload)
+            });
 
-                if (response.ok) {
-                    // Erfolgs-Modal anzeigen und Formular leeren
-                    document.getElementById('successModal').classList.remove('hidden');
-                    document.getElementById('legalForm').reset();
-                    document.getElementById('fileList').innerHTML = '';
-                } else {
-                    throw new Error("Netzwerk-Antwort war nicht ok.");
-                }
-            } catch (error) {
-                console.error("Fehler beim Senden:", error);
-                alert("Es gab einen Fehler beim Senden. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie mich direkt per E-Mail.");
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
+            if (response.ok) {
+                // Erfolgs-Modal anzeigen und Formular leeren
+                document.getElementById('successModal').classList.remove('hidden');
+                document.getElementById('legalForm').reset();
+                document.getElementById('fileList').innerHTML = '';
+            } else {
+                throw new Error("Netzwerk-Antwort war nicht ok.");
             }
+        } catch (error) {
+            console.error("Fehler beim Senden:", error);
+            alert("Es gab einen Fehler beim Senden. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie mich direkt per E-Mail.");
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
         }
-</script<    
+    }
+    </script>
 
 </body>
 </html>
