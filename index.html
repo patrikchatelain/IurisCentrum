@@ -696,79 +696,52 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT FOR INTERACTION -->
-    <script>
-        // Mobile Navigation Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // FAQ Toggle Logic
-        function toggleFaq(id) {
-            const answer = document.getElementById(`faq-answer-${id}`);
-            const icon = document.getElementById(`faq-icon-${id}`);
-            
-            const isActive = answer.classList.contains('active');
-            
-            // Close all
-            document.querySelectorAll('.faq-answer').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('[id^="faq-icon-"]').forEach(el => el.style.transform = 'rotate(0deg)');
-            
-            if (!isActive) {
-                answer.classList.add('active');
-                icon.style.transform = 'rotate(180deg)';
-            }
-        }
-
-        // File List Display Simulation
-        function updateFileList() {
-            const input = document.getElementById('fileInput');
-            const fileList = document.getElementById('fileList');
-            fileList.innerHTML = '';
-            
-            if (input.files.length > 0) {
-                for (let i = 0; i < input.files.length; i++) {
-                    const fileName = input.files[i].name;
-                    fileList.innerHTML += `<div><i class="fa-solid fa-file text-slate-400 mr-1"></i> ${fileName}</div>`;
-                }
-            }
-        }
-
-        // Form Submit Handler
-        function handleFormSubmit(e) {
+        // Form Submit Handler für n8n Webhook
+        async function handleFormSubmit(e) {
             e.preventDefault();
             
-            const name = document.getElementById('fullname').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const category = document.getElementById('category').value;
-            const message = document.getElementById('message').value;
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i><span>Wird gesendet...</span>';
 
-            // Prepare Mailto Link
-            const subject = encodeURIComponent(`Neue Rechtsberatung-Anfrage von ${name} [${category}]`);
-            const body = encodeURIComponent(
-                `Name: ${name}\n` +
-                `E-Mail: ${email}\n` +
-                `Telefon: ${phone}\n` +
-                `Rechtsgebiet: ${category}\n\n` +
-                `Anliegen:\n${message}`
-            );
+            // Daten direkt aus den bestehenden IDs auslesen
+            const formDataPayload = {
+                name: document.getElementById('fullname').value,
+                email: document.getElementById('email').value,
+                telefon: document.getElementById('phone').value,
+                rechtsgebiet: document.getElementById('category').value,
+                nachricht: document.getElementById('message').value
+            };
 
-            // Open mail Client
-            window.location.href = `mailto:info@kostenlose-rechtsberatung.ch?subject=${subject}&body=${body}`;
+            try {
+                // ERSETZEN SIE DIESE URL MIT IHRER ECHTEN N8N WEBHOOK-URL
+                const webhookUrl = "https://n8n.kostenlose-rechtsberatung.ch/webhook/Mail-Formular";
 
-            // Show Success Modal
-            document.getElementById('successModal').classList.remove('hidden');
-            document.getElementById('legalForm').reset();
-            document.getElementById('fileList').innerHTML = '';
+                const response = await fetch(webhookUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(formDataPayload)
+                });
+
+                if (response.ok) {
+                    // Erfolgs-Modal anzeigen und Formular leeren
+                    document.getElementById('successModal').classList.remove('hidden');
+                    document.getElementById('legalForm').reset();
+                    document.getElementById('fileList').innerHTML = '';
+                } else {
+                    throw new Error("Netzwerk-Antwort war nicht ok.");
+                }
+            } catch (error) {
+                console.error("Fehler beim Senden:", error);
+                alert("Es gab einen Fehler beim Senden. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie mich direkt per E-Mail.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
         }
-
-        function closeModal() {
-            document.getElementById('successModal').classList.add('hidden');
-        }
-    </script>
+    
 </body>
 </html>
