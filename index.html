@@ -358,9 +358,6 @@
                                 Mein Anspruch ist es, Ihnen eine schnelle und nachvollziehbare Orientierung zu ermöglichen. Mit einer kostenlosen Ersteinschätzung möchte ich dazu beitragen, dass Sie fundierte Entscheidungen treffen können.<br><br><img src="https://static.wixstatic.com/media/370abe_b96a7660d6dd45738cfd2ce528b057a3~mv2.png/v1/fill/w_321,h_90,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/sign_edited.png"><b>Ihr persönlicher Rechtsberater</b>
                             </p>
                         </div>
-
-                        
-
                     </div>
 
                 </div>
@@ -473,7 +470,7 @@
                         </p>
                     </div>
 
-                    <form id="legalForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <form id="anfrageForm" enctype="multipart/form-data" class="space-y-6">
                         
                         <div class="grid md:grid-cols-2 gap-6">
                             <!-- VOR- UND NACHNAME -->
@@ -481,10 +478,8 @@
                                 <label for="fullname" class="block text-xs font-bold uppercase tracking-wider text-slate-700">
                                     Ihr Vor- und Nachname <span class="text-red-500">*</span>
                                 </label>
-                                <div class="relative">
-                                    <input type="text" id="fullname" required placeholder="z. B. Anna Muster"
-                                        class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-trust-500 focus:border-trust-500 outline-none transition text-sm">
-                                </div>
+                                <input type="text" id="fullname" name="name" required placeholder="z. B. Anna Muster"
+                                    class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-trust-500 focus:border-trust-500 outline-none transition text-sm">
                             </div>
 
                             <!-- E-MAIL ADDRESS -->
@@ -492,7 +487,7 @@
                                 <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-700">
                                     Ihre E-Mail-Adresse <span class="text-red-500">*</span>
                                 </label>
-                                <input type="email" id="email" required placeholder="name@beispiel.ch"
+                                <input type="email" id="email" name="email" required placeholder="name@beispiel.ch"
                                     class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-trust-500 focus:border-trust-500 outline-none transition text-sm">
                             </div>
                         </div>
@@ -503,7 +498,7 @@
                                 <label for="phone" class="block text-xs font-bold uppercase tracking-wider text-slate-700">
                                     Telefonnummer (für Rückfragen)
                                 </label>
-                                <input type="tel" id="phone" placeholder="+41 79 000 00 00"
+                                <input type="tel" id="phone" name="telefon" placeholder="+41 79 000 00 00"
                                     class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-trust-500 focus:border-trust-500 outline-none transition text-sm">
                             </div>
 
@@ -512,7 +507,7 @@
                                 <label for="category" class="block text-xs font-bold uppercase tracking-wider text-slate-700">
                                     Betroffenes Rechtsgebiet <span class="text-red-500">*</span>
                                 </label>
-                                <select id="category" required class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-trust-500 focus:border-trust-500 outline-none transition text-sm bg-white">
+                                <select id="category" name="rechtsgebiet" required class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-trust-500 focus:border-trust-500 outline-none transition text-sm bg-white">
                                     <option value="" disabled selected>Bitte auswählen...</option>
                                     <option value="Mietrecht">Mietrecht & Nachbarschaft</option>
                                     <option value="Arbeitsrecht">Arbeitsrecht & Kündigung</option>
@@ -530,17 +525,17 @@
                             <label for="message" class="block text-xs font-bold uppercase tracking-wider text-slate-700">
                                 Beschreibung Ihres Anliegens <span class="text-red-500">*</span>
                             </label>
-                            <textarea id="message" rows="5" required placeholder="Bitte beschreiben Sie kurz Ihre aktuelle Situation und welche konkrete Frage Sie haben..."
+                            <textarea id="message" name="beschreibung" rows="5" required placeholder="Bitte beschreiben Sie kurz Ihre aktuelle Situation und welche konkrete Frage Sie haben..."
                                 class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-trust-500 focus:border-trust-500 outline-none transition text-sm"></textarea>
                         </div>
 
                         <!-- DATEI UPLOAD FIELD -->
                         <div class="space-y-2">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                            <label for="fileInput" class="block text-xs font-bold uppercase tracking-wider text-slate-700">
                                 Dokumente anhängen (Optional)
                             </label>
                             <div class="border-2 border-dashed border-slate-300 rounded-xl p-4 text-center bg-slate-50/50 hover:bg-slate-50 transition cursor-pointer relative" id="dropZone">
-                                <input type="file" id="fileInput" class="hidden" multiple onchange="updateFileList()">
+                                <input type="file" id="fileInput" name="dokument" class="hidden" onchange="updateFileList()">
                                 <label for="fileInput" class="cursor-pointer flex flex-col items-center gap-1">
                                     <i class="fa-solid fa-cloud-arrow-up text-2xl text-trust-500"></i>
                                     <span class="text-xs font-medium text-slate-600">PDF, Bilder oder Verträge hochladen</span>
@@ -559,7 +554,7 @@
                         </div>
 
                         <!-- SUBMIT BUTTON -->
-                        <button type="submit" class="w-full py-4 rounded-xl bg-trust-800 hover:bg-trust-900 text-white font-bold text-base shadow-lg shadow-trust-800/20 transition-all flex items-center justify-center gap-2">
+                        <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-trust-800 hover:bg-trust-900 text-white font-bold text-base shadow-lg shadow-trust-800/20 transition-all flex items-center justify-center gap-2">
                             <i class="fa-regular fa-paper-plane"></i>
                             <span>Kostenlose Anfrage jetzt absenden</span>
                         </button>
@@ -693,95 +688,77 @@
             </div>
         </div>
     </footer>
-    
-    
-    
-    <form id="anfrageForm" enctype="multipart/form-data">
-  <!-- Name -->
-  <div style="margin-bottom: 15px;">
-    <label for="name">Ihr Vor- und Nachname *</label><br>
-    <input type="text" id="name" name="name" required style="width: 100%; padding: 8px; margin-top: 5px;" placeholder="Max Muster">
-  </div>
 
-  <!-- E-Mail -->
-  <div style="margin-bottom: 15px;">
-    <label for="email">Ihre E-Mail-Adresse *</label><br>
-    <input type="email" id="email" name="email" required style="width: 100%; padding: 8px; margin-top: 5px;" placeholder="max@beispiel.ch">
-  </div>
-
-  <!-- Telefonnummer -->
-  <div style="margin-bottom: 15px;">
-    <label for="telefon">Telefonnummer (für Rückfragen)</label><br>
-    <input type="tel" id="telefon" name="telefon" style="width: 100%; padding: 8px; margin-top: 5px;" placeholder="+41 79 000 00 00">
-  </div>
-
-  <!-- Betroffenes Rechtsgebiet -->
-  <div style="margin-bottom: 15px;">
-    <label for="rechtsgebiet">Betroffenes Rechtsgebiet *</label><br>
-    <select id="rechtsgebiet" name="rechtsgebiet" required style="width: 100%; padding: 8px; margin-top: 5px;">
-      <option value="">Bitte wählen...</option>
-      <option value="Arbeitsrecht">Arbeitsrecht</option>
-      <option value="Mietrecht">Mietrecht</option>
-      <option value="Familienrecht">Familienrecht</option>
-      <option value="Vertragsrecht">Vertragsrecht</option>
-      <option value="Strafrecht">Strafrecht</option>
-      <option value="Anderes Rechtsgebiet">Anderes Rechtsgebiet</option>
-    </select>
-  </div>
-
-  <!-- Beschreibung des Anliegens -->
-  <div style="margin-bottom: 15px;">
-    <label for="beschreibung">Beschreibung Ihres Anliegens *</label><br>
-    <textarea id="beschreibung" name="beschreibung" rows="5" required style="width: 100%; padding: 8px; margin-top: 5px;" placeholder="Sildern Sie hier kurz Ihr Anliegen..."></textarea>
-  </div>
-
-  <!-- Dokumente anhängen -->
-  <div style="margin-bottom: 20px;">
-    <label for="dokument">Dokumente anhängen (Optional)</label><br>
-    <input type="file" id="dokument" name="dokument" style="width: 100%; margin-top: 5px;">
-  </div>
-
-  <!-- Absende-Button -->
-  <button type="submit" style="background-color: #0b2545; color: white; padding: 10px 20px; border: none; cursor: pointer; font-size: 16px;">
-    Jetzt kostenlose Anfrage starten
-  </button>
-</form>
-
-    
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('#anfrageForm');
-
-  if (!form) {
-    console.error('Formular mit ID "anfrageForm" wurde nicht gefunden!');
-    return;
-  }
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Verhindert das Neuladen der Standard-Seite
-    
-    const formData = new FormData(form);
-
-    try {
-      const response = await fetch('https://n8n.kostenlose-rechtsberatung.ch/webhook/iuriscentrum-anfrage', {
-        method: 'POST',
-        body: formData, // Sendet alle Textfelder und die hochgeladene Datei
-      });
-
-      if (response.ok) {
-        alert('Vielen Dank! Ihre Anfrage wurde erfolgreich versendet.');
-        form.reset();
-      } else {
-        alert('Fehler beim Senden. Bitte versuchen Sie es später erneut.');
-      }
-    } catch (error) {
-      console.error('Verbindungsfehler:', error);
-      alert('Verbindungsfehler zum Server.');
+    <!-- JAVASCRIPT HANDLER -->
+    <script>
+    // FAQ Toggle Funktion
+    function toggleFaq(id) {
+        const answer = document.getElementById(`faq-answer-${id}`);
+        const icon = document.getElementById(`faq-icon-${id}`);
+        answer.classList.toggle('active');
+        icon.classList.toggle('rotate-180');
     }
-  });
-});
-</script>  
-    
-   
+
+    // Modal Funktionen
+    function openModal() {
+        document.getElementById('successModal').classList.remove('hidden');
+    }
+    function closeModal() {
+        document.getElementById('successModal').classList.add('hidden');
+    }
+
+    // Anzeige des Dateinamens nach Upload
+    function updateFileList() {
+        const input = document.getElementById('fileInput');
+        const listContainer = document.getElementById('fileList');
+        listContainer.innerHTML = '';
+        if (input.files && input.files.length > 0) {
+            for (let i = 0; i < input.files.length; i++) {
+                listContainer.innerHTML += `<div><i class="fa-solid fa-paperclip"></i> ${input.files[i].name}</div>`;
+            }
+        }
+    }
+
+    // Formular Submit Listener für n8n Webhook
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.querySelector('#anfrageForm');
+      if (!form) return;
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Verhindert das Neuladen der Seite
+        
+        const submitBtn = document.querySelector('#submitBtn');
+        const originalBtnText = submitBtn.innerHTML;
+        
+        // Button wärend des Sendevorgangs deaktivieren & Lade-Spinner anzeigen
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Wird gesendet...';
+
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch('https://n8n.kostenlose-rechtsberatung.ch/webhook/iuriscentrum-anfrage', {
+            method: 'POST',
+            body: formData, // Sendet Multipart FormData inklusive Datei
+          });
+
+          if (response.ok) {
+            openModal(); // Öffnet das Bestätigungs-Modal
+            form.reset();
+            document.getElementById('fileList').innerHTML = '';
+          } else {
+            alert('Fehler beim Senden. Bitte versuchen Sie es später erneut.');
+          }
+        } catch (error) {
+          console.error('Verbindungsfehler:', error);
+          alert('Verbindungsfehler zum Server.');
+        } finally {
+          // Button wiederherstellen
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+        }
+      });
+    });
+    </script>
 </body>
 </html>
