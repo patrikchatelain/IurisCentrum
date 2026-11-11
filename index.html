@@ -705,7 +705,7 @@ if (form) {
 
     try {
       // WICHTIG: Für den Live-Betrieb /webhook/ statt /webhook-test/ verwenden
-      const response = await fetch('https://n8n.kostenlose-rechtsberatung.ch/webhook-test/iuriscentrum-anfrage', {
+      const response = await fetch('https://n8n.kostenlose-rechtsberatung.ch/webhook/iuriscentrum-anfrage', {
         method: 'POST',
         body: formData, // Sendet Multipart FormData inklusive Dateien
       });
