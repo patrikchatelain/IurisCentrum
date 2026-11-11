@@ -693,75 +693,35 @@
             </div>
         </div>
     </footer>
-
+    
+    
+    
     <!-- Form Submit Handler für n8n Webhook -->
-    <script>
-    async function handleFormSubmit(e) {
-        e.preventDefault();
-        
-        const submitBtn = e.target.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i><span>Wird gesendet...</span>';
+    
+    const form = document.querySelector('form');
 
-        const formDataPayload = {
-            name: document.getElementById('fullname').value,
-            email: document.getElementById('email').value,
-            telefon: document.getElementById('phone').value,
-            rechtsgebiet: document.getElementById('category').value,
-            nachricht: document.getElementById('message').value
-        };
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-        try {
-            const webhookUrl = "https://n8n.kostenlose-rechtsberatung.ch/webhook/rechtsberatung-kontakt";
+  const formData = new FormData(form);
 
-            const response = await fetch(webhookUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formDataPayload)
-            });
+  try {
+    const response = await fetch('DEINE_N8N_WEBHOOK_URL', {
+      method: 'POST',
+      body: formData, // Sendet Multipart FormData inklusive Dateien
+    });
 
-            if (response.ok) {
-                // Erfolgs-Modal anzeigen und Formular leeren
-                document.getElementById('successModal').classList.remove('hidden');
-                document.getElementById('legalForm').reset();
-                
-                // Prüfen ob fileList existiert, bevor es gelehrt wird
-                const fileList = document.getElementById('fileList');
-                if (fileList) {
-                    fileList.innerHTML = '';
-                }
-            } else {
-                throw new Error("Netzwerk-Antwort war nicht ok.");
-            }
-        } catch (error) {
-            console.error("Fehler beim Senden:", error);
-            alert("Es gab einen Fehler beim Senden. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie mich direkt per E-Mail.");
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalText;
-        }
+    if (response.ok) {
+      alert('Vielen Dank! Ihre Anfrage wurde erfolgreich versendet.');
+      form.reset();
+    } else {
+      alert('Fehler beim Senden. Bitte versuchen Sie es später erneut.');
     }
-
-    // Modal schliessen
-    function closeModal() {
-        document.getElementById('successModal').classList.add('hidden');
-    }
-
-    // FAQ Accordion Steuerung
-    function toggleFaq(id) {
-        const answer = document.getElementById('faq-answer-' + id);
-        const icon = document.getElementById('faq-icon-' + id);
-        if (answer) {
-            answer.classList.toggle('active');
-            if (icon) {
-                icon.style.transform = answer.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
-            }
-        }
-    }
-    </script>
+  } catch (error) {
+    console.error('Fehler:', error);
+    alert('Verbindungsfehler zum Server.');
+  }
+});
 
 </body>
 </html>
